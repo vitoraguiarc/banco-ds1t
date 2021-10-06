@@ -7,9 +7,9 @@ public class Conta {
 	// Atributos da classe Conta
 	private TipoConta tipo;
 	private String numero;
-	private String numeroAgencia;
-	public Cliente titular;
+	private Cliente titular;
 	private double saldo;
+	private Agencia agencia;
 	
 	
 	// Construtores da classe Conta
@@ -25,15 +25,23 @@ public class Conta {
 	}
 	
 	public TipoConta getTipo(){
-		return tipo;
+		return this.tipo;
 	}
 	
-	public void setNumeroAgencia(String numeroAgencia){
-		this.numeroAgencia = numeroAgencia;
+	public void setAgencia(Agencia agencia){
+		this.agencia = agencia;
 	}
 	
-	public String getNumeroAgencia() {
-		return numeroAgencia;
+	public Agencia getAgencia() {
+		return this.agencia;
+	}
+	
+	public void setTitular(Cliente titular) {
+		this.titular = titular;
+	}
+	
+	public Cliente getTitular () {
+		return this.titular;
 	}
 	
 	
@@ -46,7 +54,7 @@ public class Conta {
 		if (valorDeposito > 0) {
 			saldo += valorDeposito;
 			System.out.println("Depósito efetuado com sucesso :))");
-			System.out.println("Foi depositado " + valorDeposito + " na conta da(o) " + titular);
+			System.out.println("Foi depositado " + valorDeposito + " na conta da(o) " + titular.getNome());
 		} else {
 			System.out.println("Não foi possível efetuar o depósito :(("
 					+ "\nO valor do deposito deve ser maior que 0");
@@ -61,7 +69,7 @@ public class Conta {
 		if (valorSaque > 0 && valorSaque <= saldo) {
 			saldo -= valorSaque;
 			System.out.println("Saque realido com sucesso :))");
-			System.out.println("Foi feito um saque de " + valorSaque + " da conta da(o) " + titular);
+			System.out.println("Foi feito um saque de " + valorSaque + " da conta da(o) " + titular.getNome());
 			return true;
 		} else {
 			System.out.println("Não foi possível sacar :(("
@@ -90,9 +98,11 @@ public class Conta {
 	public void exibirDetalhes() {
 		System.out.println();
 		System.out.println("---------------------");
-		System.out.printf("Titular: %s\n", titular);
+		System.out.printf("Titular: %s\n", titular.getNome());
+		System.out.printf("E-mail: %s\n", titular.getEmail());
 		System.out.printf("Número: %s\n", numero);
-		System.out.printf("Agência: %s\n", numeroAgencia);
+		System.out.printf("Agência: %s\n", agencia.getNumero());
+		System.out.printf("Gerente: %s\n", agencia.getGerente());
 		System.out.printf("Tipo: %s\n", tipo);
 		System.out.printf("Saldo: %s\n", saldo);
 	}
